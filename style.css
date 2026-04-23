@@ -1,0 +1,318 @@
+
+
+:root {
+    --intensity: 0;
+    --shake: 0px;
+    --font-weight: 300;
+    --font-width: 100;
+    --letter-spacing: 0.05em;
+    --transition-duration: 0.8s;
+    --bg-color: #000000;
+    --text-color: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Reforma 1918', serif;
+    font-weight: var(--font-weight);
+    letter-spacing: var(--letter-spacing);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: translate(var(--shake), var(--shake));
+    transition: 
+        background-color var(--transition-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        color var(--transition-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        font-weight var(--transition-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        letter-spacing var(--transition-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+textarea {
+    width: 90vw;
+    height: 80vh;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    color: inherit;
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'wght' var(--font-weight);
+    font-size: clamp(3rem, 8vw, 10rem);
+    letter-spacing: inherit;
+    text-align: center;
+    line-height: 1.1;
+    transition: all var(--transition-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+textarea::placeholder {
+    color: inherit;
+    opacity: 0.2;
+}
+
+#intensity-meter {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#intensity-bar {
+    height: 100%;
+    width: calc(var(--intensity) * 100%);
+    background: var(--text-color);
+    transition: width 0.1s linear, background-color var(--transition-duration);
+}
+
+.aggressive-glitch {
+    animation: glitch-anim 0.1s infinite alternate;
+}
+
+@keyframes glitch-anim {
+    0% { transform: translate(4px, -4px) skew(-4deg); filter: hue-rotate(90deg); }
+    100% { transform: translate(-4px, 4px) skew(4deg); filter: hue-rotate(-90deg); }
+}
+
+/* Overlays (Landing & Popup) */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    color: #ffffff;
+    font-family: 'Reforma 1918', serif;
+}
+
+.overlay.white-bg {
+    background: #000000; /* Overriding previous white-bg class to match the dark theme */
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Landing Page Specifics */
+.split-layout {
+    display: flex;
+    max-width: 1100px;
+    width: 90%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    position: relative;
+}
+
+/* Cyber-Industrial Accent Marks */
+.split-layout::before, .split-layout::after {
+    content: '+';
+    position: absolute;
+    color: #ef4444;
+    font-size: 1.5rem;
+    font-family: monospace;
+}
+.split-layout::before { top: -40px; left: -40px; }
+.split-layout::after { bottom: -40px; right: -40px; }
+
+.landing-text {
+    flex: 1.2;
+    text-align: left;
+}
+
+.landing-text h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+    color: #ffffff;
+}
+
+.landing-text .strikethrough {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #ef4444;
+}
+
+.landing-text strong {
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.landing-image {
+    flex: 0.8;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.landing-image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Button Styling (Cyber-Industrial Pill) */
+button {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 14px 32px;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Reforma 1918', serif;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+button::after {
+    content: '→';
+    font-family: monospace;
+}
+
+button:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    transform: none; /* Removed the scale effect for a stiffer brutalist feel */
+}
+
+/* Popup Specifics */
+.popup-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 4rem;
+    background: #050505;
+    border: 1px solid #333;
+    border-radius: 0; /* Square edges for brutalist feel */
+    position: relative;
+}
+
+.popup-content::before {
+    content: '+';
+    position: absolute;
+    top: 10px; left: 10px;
+    color: #ef4444;
+}
+
+.popup-content img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 0;
+    margin-bottom: 2rem;
+    filter: grayscale(80%);
+}
+
+#dismiss-popup-btn {
+    /* Uses base button styles */
+}
+
+/* Mode Toggle */
+#mode-toggle {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    padding: 4px;
+    z-index: 10;
+}
+
+.mode-btn {
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+.mode-btn::after {
+    content: none; /* No arrow for toggles */
+}
+
+.mode-btn:hover {
+    background: transparent;
+    border-color: transparent;
+    opacity: 1;
+}
+
+.mode-btn.active {
+    background: #ffffff;
+    color: #000000;
+    opacity: 1;
+}
+
+/* Audio Visualizer */
+#audio-visualizer {
+    width: 80vw;
+    height: 40vh;
+    z-index: 1;
+}
+
+/* Home Button */
+#home-btn {
+    position: absolute;
+    top: 35px;
+    left: 40px;
+    background: transparent;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    z-index: 10;
+    opacity: 0.6;
+}
+
+#home-btn::after {
+    content: none;
+}
+
+#home-btn:hover {
+    background: #ffffff;
+    color: #000000;
+    opacity: 1;
+}

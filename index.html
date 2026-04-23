@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Test</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💣</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/reforma-1918" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Landing Page CTA -->
+    <div id="landing-overlay" class="overlay active white-bg">
+        <div class="landing-content split-layout">
+            <div class="landing-text">
+                <h1>A very simple<br><span class="strikethrough">typing</span> <strong>stress</strong> test</h1>
+                <button id="start-btn">begin test</button>
+            </div>
+            <div class="landing-image">
+                <img src="harold.png" alt="Harold">
+            </div>
+        </div>
+    </div>
+
+    <!-- Calm Down Popup -->
+    <div id="calm-popup" class="overlay">
+        <div class="popup-content">
+            <img src="soothing.png" alt="Soothing Zen Garden">
+            <h2 style="font-variation-settings: 'wght' 600, 'wdth' 100;">Please Calm Down</h2>
+            <p id="popup-time-msg" style="margin-bottom: 0.5rem; color: #ef4444; font-weight: 800; font-size: 1.1rem;"></p>
+            <p style="margin-bottom: 2rem;">Your typing and environment are highly aggressive. Take a deep breath.</p>
+            <button id="dismiss-popup-btn">I'm Calm</button>
+        </div>
+    </div>
+
+    <div id="app">
+        <button id="home-btn">home</button>
+        <div id="mode-toggle">
+            <button id="btn-type" class="mode-btn active">Type</button>
+            <button id="btn-voice" class="mode-btn">Voice</button>
+        </div>
+        <textarea id="text-input" placeholder="start typing..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false"></textarea>
+        <canvas id="audio-visualizer" style="display: none;"></canvas>
+        <div id="intensity-meter">
+            <div id="intensity-bar"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
